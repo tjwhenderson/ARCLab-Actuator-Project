@@ -1,0 +1,63 @@
+.mini-nav {
+  margin-left: 90px;
+  margin-top: 15px;
+}
+
+.each-nav {
+  display: block;
+}
+
+.each-link {
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #3680B6;
+
+}
+
+/* hovering link colors... */
+.each-nav a:link {
+}
+.each-nav a:visited {
+
+}
+.each-nav a:hover {
+  color: #3680B6;
+  text-decoration: none;
+}
+.each-nav a.active {
+}
+
+h3,p1,p2,p3{
+  margin-left: 130px;
+  margin-top: 50px;
+  margin-bottom: auto;
+}
+
+h5{
+  margin-left: 200px;
+}
+
+table{
+  margin-left: 130px;
+  border-spacing: 100px;
+}
+th,td{
+  width: 350px;
+  padding: 50px;
+}
+figure{
+  text-align: center;
+}
+.img {
+  width:200px;
+  height:200px;
+  border:1;
+}
+
+
+
+.general-about {
+  margin-left: 128px;
+  margin-right: 120px;
+}
