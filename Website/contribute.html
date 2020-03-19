@@ -4,7 +4,7 @@
   <head>
     <!-- required meta tags -->
     <meta charset="UTF-8">
-    <title>Actuator</title>
+    <title>Robot Muscle Toolkit</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css" type="text/css">
     <!-- bootstrap -->
@@ -13,10 +13,12 @@
   </head>
   <body>
 
+      <img class="logo" src="icons/logo.png" alt="logo">
+
 <!-- navigation bar -->
   <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link active" href="index.html">Home</a>
+      <a class="nav-link" href="index.html">Home</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="about.html">About</a>
@@ -31,7 +33,7 @@
       <a class="nav-link" href="#">Forum</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="contribute.html">Contribute</a>
+      <a class="nav-link active" href="contribute.html">Contribute</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Resources for Educators</a>
@@ -41,9 +43,54 @@
     </li>
   </ul>
 
-  <p class="links">
-    <a class="page-links" href="index.html">Home</a>
-  </p>
+  <!-- mini navigation on the page -->
+    <ul class="mini-nav">
+      <li class="each-nav">
+        <a class="each-link" href="index.html">Home</a>
+      </li>
+    </ul>
+
+    <div class="container">
+  <form action="/action_page.php">
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">First Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="fname" name="firstname" placeholder="Your name..">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="lname">Last Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="email">Email</label>
+    </div>
+    <div class="col-75">
+      <input type="text" id="lname" name="lastname" placeholder="Your email address..">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-25">
+      <label for="subject">Subject</label>
+    </div>
+    <div class="col-75">
+      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <input type="submit" value="Submit">
+  </div>
+  </form>
+</div>
+
+
 
     <!-- javascript  -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

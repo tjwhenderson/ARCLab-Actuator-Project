@@ -3,7 +3,7 @@
   <head>
     <!-- required meta tags -->
     <meta charset="UTF-8">
-    <title>Actuator</title>
+    <title>Robot Muscle Toolkit</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css" type="text/css">
     <link rel="stylesheet" href="about.css" type="text/css">
@@ -13,13 +13,16 @@
   </head>
   <body>
 
+    <img class="logo" src="icons/logo.png" alt="logo">
+
+
 <!-- navigation bar -->
   <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link active" href="#">Home</a>
+      <a class="nav-link" href="index.html">Home</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">About</a>
+      <a class="nav-link active" href="about.html">About</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Components</a>
@@ -31,7 +34,7 @@
       <a class="nav-link" href="#">Forum</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Contribute</a>
+      <a class="nav-link" href="contribute.html">Contribute</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Resources for Educators</a>
@@ -52,16 +55,36 @@
   <h3> About </h3>
 
   <p class="general-about">
-    The objective of the Muscle Actuators Toolkit is to develop a foundational
+    The objective of the Robot Muscle Toolkit is to develop a foundational
     approach towards muscle-powered machines that move using biomimetic muscle
     actuators. Biomimetic muscle actuators, or robot muscles are actuators that
-    closely mimic the properties of biological muscles in nature.
+    closely mimic the properties of biological muscles in nature.These robot muscle
+    technologies have covered  a varied range of configurations, including notable examples
+    including shape-memory alloys (SMAs) and dielectric elastomers, to super-coiled polymers
+    (SCPs) and piezoelectric actuators. They offer unique properties of controlled compliances,
+    large bandwidth ranges, high power-to-weight ratios and compact muscle-like form factors,
+    over a range of scales from micro- to macroscopic actuators. When compared to traditional
+    actuators such as motors or hydraulics, these properties are valuable in realizing compliant, 
+    compact, and safe robot designs and operation. 
     <br>
     </br>
     Despite the decades of materials research in discovering new muscles and
     imrpoving existing muscles, their transition into more widespread use in
-    robot systems and machines to date has been limited.
+    robot systems and machines to date has been limited. We argue that this is because actuators,
+    when considered as dissimilar	and distinct technologies, have significant challenges for robot
+    designers to overcome: 
+    <ol class="about-list">
+      <li>it is unclear how to select or even compare muscle actuators for use
+         in an application,</li>
+      <li>they exhibit significant nonlinear behaviors that require non-trivial modeling,
+      control, and design, resting the burden of use on the robot designer, and </li>
+      <li>few resources are available
+      for academic researchers to manufacture repeatable and stable actuators and compare performance with
+      state-of-art developments </li>
+    </ol>
   </p>
+  <p class="general-about"> We are therefore motivated to investigate a unifying modeling, control, and design strategy for
+  robot  muscles that could lower the barrier to muscle-powered robotics research. </p>
 
 
 
