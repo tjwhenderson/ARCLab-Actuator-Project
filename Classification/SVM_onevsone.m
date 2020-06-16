@@ -1,21 +1,28 @@
 clear all
 close all
+% Use GetGoogleSpreadsheet function to load in data
 X = GetGoogleSpreadsheet('1dELDmS4YZjsuyiIjc9m4ZyThvj9uYU64wKo6hq8xEJA');
+
+% Define actuator class names
 classes = ["PZT", "DEA", "IPMC", "SMA", "SCP", "SFA", "TSA", "EAP"];
 
+% Remove first column and row from data
 X(1,:) = [];
 X(:,1) = [];
+
+% Define new first column as labels
 Y = X(:,1);
+
 for i = 1:size(X,1)
-    class = X(i,1);
-    onehotlbl = strcmp(class, classes);
-    [~,lbl(i)] = max(onehotlbl);   
+    class = X(i,1); % extract each class 
+    onehotlbl = strcmp(class, classes); % one-hot encode matching class from classes list
+    [~,lbl(i)] = max(onehotlbl); % save class label index for each row
 end
-X = str2double(X);
-X(:,1) = [];
-%X = [X(:,2) X(:,3)];
-X = [X(:,2) X(:,3)];
-X = X';
+
+X = str2double(X); % convery string entries to double format
+X(:,1) = []; % remove first column
+X = [X(:,2) X(:,3)]; % extract 3nd and 3rd cloumns corresponding to stress and strain
+X = X'; % flip rows and columns of data
 
 %Normalize the data
 X = log(X);
@@ -25,6 +32,8 @@ X = log(X);
 %X = bsxfun(@minus,X,nanmean(X,2));
 %X = bsxfun(@rdivide,X,nanstd(X,[],2));
 
+% Assign class name to each number label (not sure this section is
+% necessary...)
 PZT = X(:,lbl== 1)';
 DEA = X(:,lbl == 2)';
 IPMC = X(:,lbl == 3)';
@@ -33,30 +42,30 @@ SCP = X(:,lbl==5)';
 SFA = X(:,lbl == 6)';
 TSA = X(:,lbl == 7)';
 EAP = X(:,lbl ==8)';
-%data_mean = nanmean(X,2);
-%data_std = nanstd(X,[],2);
-%X = bsxfun(@minus,X,nanmean(X,2));
-%X = bsxfun(@rdivide,X,nanstd(X,[],2));
 
-
-
+% Define Multivariate SVM parameters
 t = templateSVM('Standardize',true,'SaveSupportVectors',true,'KernelFunction','rbf');
 predictorNames = {'stress','strain'};
 responseName = 'ActuatorType';
 classNames = {'PZT', 'DEA', 'IPMC', 'SMA', 'SCP', 'SFA', 'TSA', 'EAP'};
+
+% Define Model
 Mdl = fitcecoc(X',Y,'Learners',t,'ResponseName',responseName,...
     'PredictorNames',predictorNames,'ClassNames',classNames);
-L = size(Mdl.CodingMatrix,2);
-sv = cell(L,1);
+L = size(Mdl.CodingMatrix,2); % length
+sv = cell(L,1); % support vectors
+
+% Find support vectors
 for j = 1:L
     SVM = Mdl.BinaryLearners{j};
     sv{j} = SVM.SupportVectors;
     sv{j} = sv{j}.*SVM.Sigma + SVM.Mu;
 end
 
+% Filled in data matrix
 complete = X';
-%gscatter(complete(:,1),complete(:,2),Y);
 
+% Plot SVM figure for stress vs. strain
 markers = {'ko','ro','bo','go','co','yo','mo','wo'};
 for j = 1:L
     figure(j)
