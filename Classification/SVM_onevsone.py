@@ -21,8 +21,6 @@ lbl = []
 
 # remove SMP actuator types
 df = df[df['Actuator Type'] != 'SMP']
-
-df = df.dropna()
     
 
 for index, row in df.iterrows():
@@ -30,6 +28,7 @@ for index, row in df.iterrows():
         if row["Actuator Type"] == classification:
             lbl.append(i)
 
+print(lbl[1:10])
 
 # drop first column now that we have labels 
 df = df.drop('Actuator Type', axis=1)
@@ -40,12 +39,33 @@ df = df[['Strain (%)','Stress (MPa)']].apply(pd.to_numeric)
 # normalize the data
 df = df.apply(np.log)
 
+from matrix_completion import *
+
+# casts everything to float and numpy matrix
+df_numeric = df.to_numpy()
+
+shape = df_numeric.shape
+
+
+mask = np.ones((shape[0], shape[1]))
+
+# set missing values to 0
+mask[np.isnan(df_numeric)] = 0
+
+imputed = nuclear_norm_solve(df_numeric, mask)    
+    
+    
+# transforming numpy array to dataframe and setting columsn and indicies
+df_imputed = pd.DataFrame(imputed)
+df_imputed.columns = df.columns
+df_imputed.index = df.index
+
 scaler = StandardScaler()
 # scales data by removing mean and scaling to the variance
-scaler.fit(df)
+scaler.fit(df_imputed)
 
 # applies scaler to dataset 
-x = scaler.transform(df)
+x = scaler.transform(df_imputed)
 
 # casts list of labels as numpy array
 y = np.array(lbl)
@@ -55,3 +75,9 @@ clf = SVC(kernel = 'rbf')
 
 # trains SVM
 clf.fit(x, y)
+
+# predict on training data set
+y_predict = clf.predict(x)
+
+# get accuracy metrics
+print(sklearn.metrics.accuracy_score(y_predict, y))
