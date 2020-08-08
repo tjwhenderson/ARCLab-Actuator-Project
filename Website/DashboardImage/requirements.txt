@@ -1,9 +1,0 @@
-dash
-dash_core_components
-dash_html_components
-dash-renderer
-dash-table
-plotly
-numpy
-dash.dependencies
-pandas
